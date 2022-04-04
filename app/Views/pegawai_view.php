@@ -59,6 +59,8 @@
                                         <input type="text" class="form-control" id="inputEmail">
                                     </div>
                                 </div>
+
+                              
                             <div class="mb-3 row">
                                 <label for="inputBidang" class="col-sm-2 col-form-label">Bidang</label>
                                     <div class="col-sm-10">
@@ -66,8 +68,10 @@
                                             <option value="finance">Finance</option>
                                             <option value="marketing">Marketing</option>
                                             <option value="hr">HR</option>
+                                    </select>
                                     </div>
                                 </div>
+
                                 <div class="mb-3 row">
                                 <label for="inputAlamat" class="col-sm-2 col-form-label">Alamat</label>
                                     <div class="col-sm-10">
