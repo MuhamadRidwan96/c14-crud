@@ -38,7 +38,6 @@ class Pegawai extends Migration
 
         $this->forge->addPrimaryKey('id');
         $this->forge->createTable('pegawai');
-        
     }
 
     public function down()
