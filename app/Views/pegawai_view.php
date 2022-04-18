@@ -132,9 +132,43 @@
     </div>
     <!-- SCRIPT JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <script>
+
+    function ubah(){
+
+    }
+
+    function hapus($id){
+
+    var result = confirm("yakin hapus data");
+    if(result){
+
+        window.location = "<?php echo site_url('pegawai/delete')?>/"+$id;
+    }
+
+
+    }
+
+    function cleanup(){
+        $('#inputNama').val('');
+        $('#inputEmail').val('');
+        $('#inputBidang').val('');
+        $('#inputAlamat').val('');
+    }
+
+  $('.tombol-tutup').on('click', function(){
+      
+    if($('.sukses').is(":visible")){
+
+        window.location.href = "<?php echo current_url() ."?". $_SERVER['QUERY_STRING']?>"
+    }
+
+    $('.alert').hide;
+    cleanup();
+  })
+
         $('#tombolSimpan').on('click', function() {
             var $id = $('#inputId').val();
             var $nama = $('#inputNama').val();
@@ -143,9 +177,9 @@
             var $alamat = $('#inputAlamat').val();
 
             $.ajax({
-                url: "<?php echo site_url("pegawai/simpan") ?>",
+                url: "<?php echo site_url("pegawai/save")?>",
                 type: "POST",
-                data: {
+                data:{
                     id: $id,
                     nama: $nama,
                     email: $email,
@@ -166,6 +200,7 @@
                 }
             });
 
+            cleanup();
         });
     </script>
 </body>
