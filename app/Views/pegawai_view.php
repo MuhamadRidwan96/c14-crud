@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Pegawai</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    
     <style>
         .container {
             max-width: 1000px;
@@ -20,15 +21,15 @@
     <div class="container">
         <!-- CARD -->
         <div class="card">
-            <div class="card-header bg-secondary text-white">
+            <div class="card-header bg-primary text-white">
                 Data Pegawai
             </div>
             <div class="card-body">
                 <!-- LOKASI TEXT PENCARIAN -->
                 <form action="" method="get">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="katakunci" placeholder="Masukkan Kata Kunci" aria-label="Masukkan Kata Kunci" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cari</button>
+                        <input type="text" class="form-control" value="<?php echo $katakunci ?>" name="katakunci" placeholder="Masukkan Kata Kunci" aria-label="Masukkan Kata Kunci" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Cari</button>
                     </div>
                 </form>
                 <!-- MODAL -->
@@ -136,7 +137,25 @@
 
     <script>
 
-    function ubah(){
+    function edit($id){
+
+        $.ajax({
+            
+            'url': "<?php echo site_url("pegawai/edit")?>/"+ $id,
+            'type':"GET",
+            success:function(hasil){
+
+                var $obj = $.parseJSON(hasil)
+                if($obj.id !=''){
+                $('#inputId').val($obj.id);
+                $('#inputNama').val($obj.nama);
+                $('#inputEmail').val($obj.email);
+                $('#inputBidang').val($obj.bidang);
+                $('#inputAlamat').val($obj.alamat);
+                }
+               
+            }
+        });
 
     }
 
@@ -152,6 +171,7 @@
     }
 
     function cleanup(){
+        $('#inputId').val('');
         $('#inputNama').val('');
         $('#inputEmail').val('');
         $('#inputBidang').val('');

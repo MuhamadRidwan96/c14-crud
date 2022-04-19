@@ -18,8 +18,7 @@ class Pegawai extends BaseController{
 
     function edit($id){
 
-        return json_encode($this->model->find($id));
-
+        return json_encode($this->models->find($id));
     }
 
     function save(){
@@ -53,7 +52,7 @@ class Pegawai extends BaseController{
             ];
             $validation->setRules($rules);
             if($validation->withRequest($this->request)->run()){
-                
+        
                 $id = $this->request->getPost('id');
                 $nama = $this->request->getPost('nama');
                 $email = $this->request->getPost('email');
@@ -85,11 +84,15 @@ class Pegawai extends BaseController{
 
     public function index(){
 
-        $baris = 7;
-
+        $katakunci = $this->request->getGet('katakunci');
+        if($katakunci){
+            $search = $this->models->search($katakunci);
+        } else {
+            $search = $this->models;
+        }
         $data = [
-            
-            'dataPegawai' => $this->models->orderBy('id','asc')->paginate($baris),
+            'katakunci' => $katakunci,
+            'dataPegawai' => $search->orderBy('id','asc')->paginate(7),
             'pager' => $this->models->pager,
             'nomor' => ($this->request->getVar('page')==1) ? '0': $this->request->getVar('nomor')
         ];
