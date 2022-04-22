@@ -1,10 +1,12 @@
 <?php namespace App\Controllers;
 
+use App\Models\ModelPegawai;
+
 class Pegawai extends BaseController{
 
     function __construct()
     {
-        $this->models = new \App\Models\ModelPegawai();
+        $this->models = new ModelPegawai();
 
     }
 
